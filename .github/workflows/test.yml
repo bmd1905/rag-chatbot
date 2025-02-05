@@ -13,41 +13,32 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.11"]
+        python-version: ["3.11", "3.12"]
 
     steps:
     - uses: actions/checkout@v4
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
     - name: Install uv
-      run: |
-        curl -LsSf https://astral.sh/uv/install.sh | sh
-
-    - name: Get uv cache dir
-      id: uv-cache-dir
-      shell: bash
-      run: |
-        echo "dir=$(uv cache dir)" >> $GITHUB_OUTPUT
-
-    - name: Cache uv dependencies
-      uses: actions/cache@v4
+      uses: astral-sh/setup-uv@v5
       with:
-        path: ${{ steps.uv-cache-dir.outputs.dir }}
-        key: ${{ runner.os }}-uv-${{ hashFiles('**/pyproject.toml') }}-${{ hashFiles('**/uv.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-uv-
+        version: "0.5.28"
 
     - name: Install dependencies
       run: |
-        uv pip install -e ".[dev]"
+        uv sync --frozen
+      env:
+        UV_SYSTEM_PYTHON: 1
 
     - name: Run tests
       run: |
         uv run pytest test/ -v --cov=backend --cov-report=xml
+      env:
+        UV_SYSTEM_PYTHON: 1
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
