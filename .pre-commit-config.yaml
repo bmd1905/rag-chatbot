@@ -1,0 +1,35 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-toml
+      - id: check-json
+      - id: check-yaml
+        args:
+          - --unsafe
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+        exclude: |
+          (?x)^(
+              frontend/src/client/.*|
+              backend/app/email-templates/build/.*
+          )$
+      - id: trailing-whitespace
+        exclude: ^frontend/src/client/.*
+      - id: detect-private-key
+      - id: name-tests-test
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.4
+    hooks:
+      - id: ruff
+        args: [ --fix ]
+      - id: ruff-format
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.1.1
+    hooks:
+      - id: commitizen

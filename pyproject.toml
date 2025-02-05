@@ -1,0 +1,40 @@
+[project]
+name = "builderstudio"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "ipykernel>=6.29.5",
+    "loguru>=0.7.3",
+    "pre-commit>=4.1.0",
+    "typing-extensions>=4.12.2",
+    "fastapi>=0.115.8",
+    "python-dotenv>=1.0.1",
+    "commitizen>=4.1.1",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "pytest-env",
+    "pytest-asyncio",
+    "ruff>=0.9.4",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-select = ["I", "U"]
+ignore = ["UP006", "UP015", "UP035", "I001"]
+
+[tool.ruff.lint.per-file-ignores]
+"*.ipynb" = ["E402", "F811", "E722"]
+
+[tool.commitizen]
+version = "0.1.0"
+update_changelog_on_bump = true
