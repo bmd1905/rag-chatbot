@@ -1,4 +1,4 @@
-.PHONY: hello-world test lint pre-commit
+.PHONY: hello-world test lint pre-commit commit
 
 hello-world:
 	uv run python backend/hello_world.py
@@ -12,3 +12,6 @@ lint:
 
 pre-commit:
 	uv run pre-commit run --all-files
+
+commit:
+	uv run cz commit
