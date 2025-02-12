@@ -1,8 +1,8 @@
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from rag import RAG
-from getLLM import LLMClient
-from getCollection import MongoDBClient
+from get_llm import LLMClient
+from get_collection import MongoDBClient
 from semantic_router import Route
 from samples import product, chitchat
 from semantic_router.encoders import HuggingFaceEncoder
