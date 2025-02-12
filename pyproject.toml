@@ -29,12 +29,30 @@ line-length = 120
 target-version = "py311"
 
 [tool.ruff.lint]
+select = [
+    "F",        # Pyflakes
+    "I",        # isort
+    "TCH",      # Type-checking imports
+    "UP",       # pyupgrade
+    "PLC",      # Pylint import conventions
+]
 extend-select = ["I", "U"]
-ignore = ["UP006", "UP015", "UP035", "I001"]
+ignore = ["UP015", "UP035"]  # Keep some reasonable exceptions
 
 [tool.ruff.lint.per-file-ignores]
 "*.ipynb" = ["E402", "F811", "E722"]
+"__init__.py" = ["F401"]  # Ignore unused imports in __init__ files
 
 [tool.commitizen]
 version = "0.1.0"
 update_changelog_on_bump = true
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
+force-wrap-aliases = true
+known-first-party = ["backend"]
+force-single-line = false
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.lint.pylint]
+max-args = 6
