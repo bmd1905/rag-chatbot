@@ -3,8 +3,8 @@ import textwrap
 from sentence_transformers import SentenceTransformer
 from pyvi.ViTokenizer import tokenize
 import dotenv
-from getCollection import MongoDBClient
-from getLLM import LLMClient
+from get_collection import MongoDBClient
+from get_llm import LLMClient
 import os
 
 # Ensure the script can find the .env file anywhere
