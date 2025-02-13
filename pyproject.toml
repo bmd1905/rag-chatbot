@@ -20,7 +20,7 @@ dependencies = [
     "scikit-learn==1.5.2",
     "pyvi==0.1.1",
     "regex==2024.9.11",
-    "torch==2.1.2",
+    "torch==2.4.1",
     "pytest"
 ]
 
