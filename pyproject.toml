@@ -12,6 +12,16 @@ dependencies = [
     "fastapi>=0.115.8",
     "python-dotenv>=1.0.1",
     "commitizen>=4.1.1",
+    "pymongo==4.10.0",
+    "regex==2024.9.11",
+    "sentence-transformers==3.1.1",
+    "uvicorn==0.31.0",
+    "pydantic==2.5.3",
+    "scikit-learn==1.5.2",
+    "pyvi==0.1.1",
+    "regex==2024.9.11",
+    "torch==2.1.2",
+    "pytest"
 ]
 
 [dependency-groups]
