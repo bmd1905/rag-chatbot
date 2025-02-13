@@ -17,7 +17,7 @@ dotenv.load_dotenv(dotenv.find_dotenv())
 global_rag = None
 
 # Intialize the api key
-mongodb_uri = os.getnv("MONGODB_URI")
+mongodb_uri = os.getenv("MONGODB_URI")
 api_key = os.getenv("GROQ_KEY")
 
 
