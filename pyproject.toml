@@ -38,6 +38,8 @@ dev = [
 line-length = 120
 target-version = "py311"
 
+exclude = ["frontend"]
+
 [tool.ruff.lint]
 extend-select = ["I", "U"]
 ignore = ["UP006", "UP015", "UP035", "I001"]

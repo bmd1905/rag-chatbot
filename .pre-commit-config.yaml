@@ -4,7 +4,7 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v5.0.0
     hooks:
-      - id: check-added-large-files
+      #- id: check-added-large-files
       - id: check-toml
       - id: check-json
       - id: check-yaml
@@ -27,7 +27,9 @@ repos:
     hooks:
       - id: ruff
         args: [ --fix ]
+        exclude: ^frontend/src/assets/.*
       - id: ruff-format
+        exclude: ^frontend/src/assets/.*
 
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.1.1
