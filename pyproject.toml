@@ -1,27 +1,34 @@
 [project]
-name = "builderstudio"
+name = "rag-chatbot"
 version = "0.1.0"
-description = "Add your description here"
+description = "A chatbot using Retrieval-Augmented Generation (RAG) to answer questions about given contexts"
 readme = "README.md"
 requires-python = ">=3.11"
+authors = [{name = "RAG-Chatbot Contributors"}]
+keywords = ["chatbot", "rag", "retrieval-augmented-generation", "nlp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 dependencies = [
-    "ipykernel>=6.29.5",
     "loguru>=0.7.3",
-    "pre-commit>=4.1.0",
-    "typing-extensions>=4.12.2",
-    "fastapi>=0.115.8",
-    "python-dotenv>=1.0.1",
-    "commitizen>=4.1.1",
 ]
 
 [dependency-groups]
 dev = [
-    "pre-commit",
-    "pytest",
-    "pytest-cov",
-    "pytest-env",
-    "pytest-asyncio",
+    "pre-commit>=4.1.0",
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "pytest-env>=1.1.0",
+    "pytest-asyncio>=0.21.0",
     "ruff>=0.9.4",
+    "mypy>=1.7.0",
+    "commitizen>=4.1.1",
+    "ipykernel>=6.29.5",
 ]
 
 [tool.ruff]
@@ -30,18 +37,27 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = [
-    "F",        # Pyflakes
-    "I",        # isort
+    "F",        # Pyflakes - logical errors
+    "I",        # isort - import sorting
     "TCH",      # Type-checking imports
-    "UP",       # pyupgrade
+    "UP",       # pyupgrade - modern syntax
     "PLC",      # Pylint import conventions
+    "D",        # pydocstyle - docstrings
+    "E",        # pycodestyle errors
+    "W",        # pycodestyle warnings
+    "N",        # pep8-naming
+    "S",        # flake8-bandit - security issues
 ]
 extend-select = ["I", "U"]
-ignore = ["UP015", "UP035"]  # Keep some reasonable exceptions
+ignore = ["UP015", "UP035", "D100", "D104"]  # D100/D104: module docstring not required for __init__
 
 [tool.ruff.lint.per-file-ignores]
 "*.ipynb" = ["E402", "F811", "E722"]
-"__init__.py" = ["F401"]  # Ignore unused imports in __init__ files
+"__init__.py" = ["F401", "D104"]  # Ignore unused imports and docstring
+"test/**" = ["S101"]  # S101: assert is fine in tests
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.commitizen]
 version = "0.1.0"
@@ -56,3 +72,26 @@ section-order = ["future", "standard-library", "third-party", "first-party", "lo
 
 [tool.ruff.lint.pylint]
 max-args = 6
+
+[tool.pytest.ini_options]
+minversion = "7.4"
+testpaths = ["test"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-v --strict-markers"
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+strict_equality = true

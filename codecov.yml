@@ -1,13 +1,16 @@
 coverage:
   status:
-    # Fail PRs that reduce total coverage by more than 2%
+    # Fail PRs that reduce total coverage
     project:
       default:
-        target: auto
-        threshold: 2%
-    # Treat patch coverage as informational only
+        target: 80
+        threshold: 1%
+    # Warn if patch coverage is below 70%
     patch:
       default:
-        informational: true
+        target: 70
 comment:
-  hide_project_coverage: false
+  layout: "reach,diff,flags,tree"
+  behavior: default
+  require_changes: false
+  require_base: false
