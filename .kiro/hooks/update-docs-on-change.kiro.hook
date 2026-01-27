@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "name": "Update Docs on Source Change",
+  "description": "When Python source files or configuration files are edited, prompts the agent to update relevant documentation in README.md or docs folder",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.py",
+      "pyproject.toml",
+      "Makefile",
+      "*.yaml",
+      "*.yml"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file was just edited. Review the changes and determine if the README.md or any documentation in a /docs folder needs to be updated to reflect these changes. If the changes affect public APIs, configuration, setup instructions, or usage examples, update the relevant documentation accordingly. If no documentation updates are needed, briefly explain why."
+  },
+  "workspaceFolderName": "rag-chatbot",
+  "shortName": "update-docs-on-change"
+}
