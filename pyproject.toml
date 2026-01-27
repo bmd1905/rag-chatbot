@@ -12,6 +12,9 @@ dependencies = [
     "fastapi>=0.115.8",
     "python-dotenv>=1.0.1",
     "commitizen>=4.1.1",
+    "uvicorn>=0.34.0",
+    "openai>=1.0.0",
+    "chromadb>=0.4.0",
 ]
 
 [dependency-groups]
