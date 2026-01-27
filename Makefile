@@ -1,7 +1,10 @@
-.PHONY: hello-world test lint pre-commit commit
+.PHONY: hello-world test lint pre-commit commit run
 
 hello-world:
 	uv run python backend/hello_world.py
+
+run:
+	uv run uvicorn backend.main:app --reload
 
 mock-test:
 	uv run pytest
