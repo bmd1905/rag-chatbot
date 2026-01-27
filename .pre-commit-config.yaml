@@ -12,13 +12,7 @@ repos:
           - --unsafe
       - id: check-merge-conflict
       - id: end-of-file-fixer
-        exclude: |
-          (?x)^(
-              frontend/src/client/.*|
-              backend/app/email-templates/build/.*
-          )$
       - id: trailing-whitespace
-        exclude: ^frontend/src/client/.*
       - id: detect-private-key
       - id: name-tests-test
 
